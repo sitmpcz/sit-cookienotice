@@ -10,3 +10,5 @@
 if ( !defined('SCN_PLUGIN_PATH') ) {
     define( 'SCN_PLUGIN_PATH', plugin_dir_url( __FILE__ ) );
 }
+
+// Start

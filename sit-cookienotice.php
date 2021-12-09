@@ -15,6 +15,6 @@ if ( !defined('SCN_PLUGIN_PATH') ) {
 add_action( 'wp_enqueue_scripts', 'scn_styles', 99 );
 
 function scn_styles() {
-    wp_enqueue_style( 'cookieconsent', SCN_PLUGIN_PATH . '/assets/cookieconsent.css' );
+    wp_enqueue_style( 'cookieconsent', SCN_PLUGIN_PATH . '/assets/cookieconsent.css', array(), '1.0.1' );
 }
 

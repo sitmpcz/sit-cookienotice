@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: SIT cookienotice
- * Description: Lepší adresy pro CPT a taxonomy
+ * Description: Cookie lišta pro Wordpress
  * Version: 1.0.0
  * Author: SIT:Jaroslav Dvořák
  **/

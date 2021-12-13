@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 1.0.2
+ * Version: 1.0.3
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -20,16 +20,26 @@ function scn_styles() {
 }
 
 //Javascript
+
+// Prepare file path to check
+$location = get_template_directory_uri();
+$location = str_replace( "http://", "", $location );
+$location = str_replace( "https://", "", $location );
+$location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
+$location = $_SERVER['DOCUMENT_ROOT'] . $location;
+$filename = $location . "/cookienotice-config.js";
+
 // Check if custom config file exists
-if ( file_exists( get_template_directory_uri() . "/cookieconsent-config.js" ) ) {
-    $config_path = get_template_directory_uri() . "/cookieconsent-config.js";
+if ( file_exists( $filename ) ) {
+    $config_path = get_template_directory_uri() . "/cookienotice-config.js";
 }
 else {
     $config_path = SCN_PLUGIN_PATH . 'cookieconsent-config.js';
 }
+clearstatcache();
+
 // Add this
-add_action('wp_footer', 'scn_add_scripts');
-function scn_add_scripts() {
-    wp_enqueue_script( 'cookieconsent-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
-    wp_enqueue_script( 'cookieconsent-config', SCN_PLUGIN_PATH . 'cookieconsent-config.js' );
-}
+add_action('wp_footer', function() use ( $config_path ) {
+    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
+    wp_enqueue_script( 'cookienotice-config', $config_path );
+} );

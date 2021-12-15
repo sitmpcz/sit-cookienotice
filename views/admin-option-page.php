@@ -1,8 +1,14 @@
 <?php
 
+require __DIR__ . "../../cookie-config.php";
+
 $scn_head = get_option("scn_head");
 $scn_footer = get_option("scn_footer");
 $scn_config = get_option("scn_config");
+
+if ( $scn_config == "" ) {
+    $scn_config = $cookie_config;
+}
 
 ?>
 <div class="wrap">
@@ -26,7 +32,7 @@ $scn_config = get_option("scn_config");
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Nastavení</th>
+                <th scope="row">Nastavení <br>Pokud se smaže, doplní se základní nastavení!</th>
                 <td>
                     <textarea id="js-code-editor-scn-config" rows="5" name="scn_config" class="widefat textarea"><?php echo wp_unslash( $scn_config ); ?></textarea>
                 </td>

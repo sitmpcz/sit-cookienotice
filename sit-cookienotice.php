@@ -11,6 +11,8 @@ if ( !defined('SCN_PLUGIN_PATH') ) {
     define( 'SCN_PLUGIN_PATH', plugin_dir_url( __FILE__ ) );
 }
 
+require "cookie-config.php";
+
 // Assets
 
 // Default CSS
@@ -22,19 +24,20 @@ function scn_styles() {
 //Javascript
 
 // Prepare file path to check
+
 $location = get_template_directory_uri();
 $location = str_replace( "http://", "", $location );
 $location = str_replace( "https://", "", $location );
 $location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
 $location = $_SERVER['DOCUMENT_ROOT'] . $location;
-$filename = $location . "/cookienotice-config.js";
+$filename = $location . "/cookie-config.js";
 
 // Check if custom config file exists
 if ( file_exists( $filename ) ) {
-    $config_path = get_template_directory_uri() . "/cookienotice-config.js";
+    $config_path = get_template_directory_uri() . "/cookie-config.js";
 }
 else {
-    $config_path = SCN_PLUGIN_PATH . 'cookieconsent-config.js';
+    $config_path = SCN_PLUGIN_PATH . 'cookie-config.js';
 }
 clearstatcache();
 
@@ -44,14 +47,22 @@ add_action('wp_footer', function() use ( $config_path ) {
     wp_enqueue_script( 'cookienotice-config', $config_path );
 } );
 
+
 // Add JS to head
 add_action( "wp_head", function() {
-    $post_id = get_the_id();
-    $scn_head = get_post_meta( $post_id, "scn_head", true );
+    $scn_head = get_option("scn_head");
     if ( $scn_head ) {
         echo wp_unslash( $scn_head );
     }
-} );
+}, 99, 0 );
+
+// Add JS to footer
+add_action( "wp_footer", function() {
+    $scn_footer= get_option("scn_footer");
+    if ( $scn_footer ) {
+        echo wp_unslash( $scn_footer );
+    }
+}, 99, 0 );
 
 // Odkaz na stranku v admin
 // Submenu Hlavniho nastaveni
@@ -78,6 +89,23 @@ function scn_register_plugin_settings(){
     register_setting( "scn_options", "scn_config" );
 
 }
+
+// After save options
+add_action( 'updated_option', function( $option_name, $old_value, $value ) use ( $cookie_config ) {
+
+        $scn_config = get_option("scn_config");
+        $config_js = ( $scn_config !== "" ) ? $scn_config : $cookie_config;
+
+        $location = get_template_directory_uri();
+        $location = str_replace( "http://", "", $location );
+        $location = str_replace( "https://", "", $location );
+        $location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
+        $location = $_SERVER['DOCUMENT_ROOT'] . $location;
+        $filename = $location . "/cookie-config.js";
+
+        file_put_contents( $filename, $config_js );
+
+}, 10, 3 );
 
 // Stranka nastaveni pluginu
 function scn_add_admin_plugin_page(){

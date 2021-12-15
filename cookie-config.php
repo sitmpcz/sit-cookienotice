@@ -1,38 +1,14 @@
 <?php
 
 $cookie_config = '
-// obtain plugin
+// https://github.com/orestbida/cookieconsent
+
 var cc = initCookieConsent();
 
-// run plugin with your configuration
 cc.run({
   current_lang: "cs",
-  autoclear_cookies: true,                   // default: false
-  //theme_css: "<path-to-cookieconsent.css>",  // 🚨 replace with a valid path
-  page_scripts: true,                        // default: false
-
-  // delay: 0,                               // default: 0
-  // auto_language: null                     // default: null; could also be "browser" or "document"
-  // autorun: true,                          // default: true
-  // force_consent: false,                   // default: false
-  // hide_from_bots: false,                  // default: false
-  // remove_cookie_tables: false             // default: false
-  // cookie_name: "cc_cookie",               // default: "cc_cookie"
-  // cookie_expiration: 182,                 // default: 182 (days)
-  // cookie_domain: location.hostname,       // default: current domain
-  // cookie_path: "/",                       // default: root
-  // cookie_same_site: "Lax",                // default: "Lax"
-  // use_rfc_cookie: false,                  // default: false
-  // revision: 0,                            // default: 0
-
-  onAccept: function (cookie) {
-    // ...
-  },
-
-  onChange: function (cookie, changed_preferences) {
-    // ...
-  },
-
+  autoclear_cookies: true,
+  page_scripts: true,
   languages: {
     "cs": {
       consent_modal: {
@@ -40,14 +16,8 @@ cc.run({
         description: \'Tento web je spravován společností SPRÁVA INFORMAČNÍCH TECHNOLIGIÍ MĚSTA PLZNĚ, příspěvková organizace a používá soubory cookie k zajištění funkčnosti webových stránek, jejich optimalizaci, pro správu preferencí, analýzu rozsahu a anonymní statistiky. Získané údaje jsou anonymní a nesdílíme je s nikým dalším. Kdykoli máte možnost využít svého práva poskytnout nebo neposkytnout souhlas s oprávněným zájmem na základě konkrétního účelu. To provedete v <button type="button" data-cc="c-settings" class="cc-link">nastavení</button>\',
         primary_btn: {
           text: "Přijmout vše",
-          role: "accept_all"              // "accept_selected" or "accept_all"
+          role: "accept_all"
         },
-
-        //secondary_btn: {
-        //  text: "Reject all",
-        //  role: "accept_necessary"        // "settings" or "accept_necessary"
-        //}
-
       },
       settings_modal: {
         title: "Nastavení cookie",
@@ -72,20 +42,20 @@ cc.run({
             toggle: {
               value: "necessary",
               enabled: true,
-              readonly: true          // cookie categories with readonly=true are all treated as "necessary cookies"
+              readonly: true
             }
           },
           {
             title: "Analitické soubory cookie",
             description: "Pomáhají nám sestavit statistiky návštěvnosti webu. Konkrétně pomáhají sledovat počet návštěvníků, které stránky jsou nejoblíbenější, jakým způsobem se návštěvníci na webu pohybují a také z jakého zdroje provoz pochází. Všechny informace, které soubory cookie shromažďují, jsou souhrnné a anonymní.",
             toggle: {
-              value: "analytics",     // your cookie category
+              value: "analytics",
               enabled: false,
               readonly: false
             },
-            cookie_table: [             // list of all expected cookies
+            cookie_table: [
               {
-                col1: "^_ga",       // match all cookies starting with "_ga"
+                col1: "^_ga",
                 col2: "google.com",
                 col3: "2 years",
                 col4: "description ...",

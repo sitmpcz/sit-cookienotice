@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 1.1.5
+ * Version: 1.1.6
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -12,6 +12,10 @@ if ( !defined('SCN_PLUGIN_PATH') ) {
 }
 
 require "cookie-config.php";
+require "put-js-config.php";
+
+// Vytvorime JS s konfiguraci
+scn_put_js_config( $cookie_config );
 
 // Assets
 
@@ -24,23 +28,23 @@ function scn_styles() {
 //Javascript
 
 // Prepare file path to check
-$location = get_template_directory_uri();
-$location = str_replace( "http://", "", $location );
-$location = str_replace( "https://", "", $location );
-$location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
-$location = $_SERVER['DOCUMENT_ROOT'] . $location;
-$filename = $location . "/cookie-config.js";
+//$location = get_template_directory_uri();
+//$location = str_replace( "http://", "", $location );
+//$location = str_replace( "https://", "", $location );
+//$location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
+//$location = $_SERVER['DOCUMENT_ROOT'] . $location;
+//$filename = $location . "/cookie-config.js";
 
 // Check if custom config file exists
 // Mame vygenerovany JS config z ulozenych dat v admin?
-if ( file_exists( $filename ) ) {
+//if ( file_exists( $filename ) ) {
     $config_path = get_template_directory_uri() . "/cookie-config.js";
-}
+//}
 // Pokud ne, vlozime nejaky zaklad
-else {
-    $config_path = SCN_PLUGIN_PATH . 'cookie-config.js';
-}
-clearstatcache();
+//else {
+//    $config_path = SCN_PLUGIN_PATH . 'cookie-config.js';
+//}
+//clearstatcache();
 
 // Add this
 add_action('wp_footer', function() use ( $config_path ) {
@@ -119,16 +123,6 @@ function scn_add_page_scripts_enqueue_script( $hook ) {
 // After save options
 add_action( 'updated_option', function( $option_name, $old_value, $value ) use ( $cookie_config ) {
 
-    $scn_config = get_option("scn_config");
-    $config_js = ( $scn_config !== "" ) ? $scn_config : $cookie_config;
-
-    $location = get_template_directory_uri();
-    $location = str_replace( "http://", "", $location );
-    $location = str_replace( "https://", "", $location );
-    $location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
-    $location = $_SERVER['DOCUMENT_ROOT'] . $location;
-    $filename = $location . "/cookie-config.js";
-
-    file_put_contents( $filename, $config_js );
+    scn_put_js_config( $cookie_config );
 
 }, 10, 3 );

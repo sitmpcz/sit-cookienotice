@@ -2,7 +2,7 @@
 (function($){
     $(function(){
 
-        if( $("#js-code-editor-scn-header").length ) {
+        if( $("#js-code-editor-scn-head").length ) {
             var editorSettings = wp.codeEditor.defaultSettings ? _.clone( wp.codeEditor.defaultSettings ) : {};
             editorSettings.codemirror = _.extend(
                 {},
@@ -13,7 +13,7 @@
                     mode: 'javascript',
                 }
             );
-            var editor = wp.codeEditor.initialize( $("#js-code-editor-scn-header"), editorSettings );
+            var editor = wp.codeEditor.initialize( $("#js-code-editor-scn-head"), editorSettings );
         }
 
         if( $("#js-code-editor-scn-footer").length ) {

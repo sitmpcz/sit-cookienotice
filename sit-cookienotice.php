@@ -44,6 +44,14 @@ add_action('wp_footer', function() use ( $config_path ) {
     wp_enqueue_script( 'cookienotice-config', $config_path );
 } );
 
+// Add JS to head
+add_action( "wp_head", function() {
+    $post_id = get_the_id();
+    $scn_head = get_post_meta( $post_id, "scn_head", true );
+    if ( $scn_head ) {
+        echo wp_unslash( $scn_head );
+    }
+} );
 
 // Odkaz na stranku v admin
 // Submenu Hlavniho nastaveni
@@ -65,7 +73,7 @@ function scn_add_admin_plugin_menu(){
 
 function scn_register_plugin_settings(){
 
-    register_setting( "scn_options", "scn_header" );
+    register_setting( "scn_options", "scn_head" );
     register_setting( "scn_options", "scn_footer" );
     register_setting( "scn_options", "scn_config" );
 

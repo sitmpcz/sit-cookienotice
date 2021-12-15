@@ -1,6 +1,6 @@
 <?php
 
-$scn_header = get_option("scn_header");
+$scn_head = get_option("scn_head");
 $scn_footer = get_option("scn_footer");
 $scn_config = get_option("scn_config");
 
@@ -16,7 +16,7 @@ $scn_config = get_option("scn_config");
             <tr valign="top">
                 <th scope="row">Kódy do hlavičky</th>
                 <td>
-                    <textarea id="js-code-editor-scn-header" rows="5" name="scn_header" class="widefat textarea"><?php echo wp_unslash( $scn_header ); ?></textarea>
+                    <textarea id="js-code-editor-scn-head" rows="5" name="scn_head" class="widefat textarea"><?php echo wp_unslash( $scn_head ); ?></textarea>
                 </td>
             </tr>
             <tr valign="top">

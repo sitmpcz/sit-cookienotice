@@ -43,3 +43,35 @@ add_action('wp_footer', function() use ( $config_path ) {
     wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
     wp_enqueue_script( 'cookienotice-config', $config_path );
 } );
+
+
+// Odkaz na stranku v admin
+// Submenu Hlavniho nastaveni
+add_action( 'admin_menu', 'scn_add_admin_plugin_menu' );
+
+function scn_add_admin_plugin_menu(){
+
+    add_submenu_page(
+        'options-general.php',
+        'SIT Cookie notice',
+        'SIT Cookie notice',
+        'administrator',
+        'scn-settings',
+        'scn_add_admin_plugin_page' );
+
+    //call register settings function
+    add_action( 'admin_init', 'scn_register_plugin_settings' );
+}
+
+function scn_register_plugin_settings(){
+
+    register_setting( "scn_options", "scn_header" );
+    register_setting( "scn_options", "scn_footer" );
+    register_setting( "scn_options", "scn_config" );
+
+}
+
+// Stranka nastaveni pluginu
+function scn_add_admin_plugin_page(){
+    require_once __DIR__ . "/views/admin-option-page.php";
+}

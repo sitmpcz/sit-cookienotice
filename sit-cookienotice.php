@@ -83,12 +83,14 @@ add_action( 'admin_enqueue_scripts', 'scn_add_page_scripts_enqueue_script' );
 function scn_add_page_scripts_enqueue_script( $hook ) {
     global $post;
 
+    var_dump( $hook );
+
     if ( ! $post ) { return; }
 
     if ( ! 'page' === $post->post_type ) { return; }
 
     if( 'post.php' === $hook || 'post-new.php' === $hook ) {
         wp_enqueue_code_editor( array( 'type' => 'text/html' ) );
-        wp_enqueue_script( 'js-code-editor', plugin_dir_url( __FILE__ ) . '/code-editor.js', array( 'jquery' ), '', true );
+        wp_enqueue_script( 'js-code-editor', plugin_dir_url( __FILE__ ) . '/assets/code-editor.js', array( 'jquery' ), '', true );
     }
 }

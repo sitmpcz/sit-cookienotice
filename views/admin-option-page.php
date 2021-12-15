@@ -16,19 +16,19 @@ $scn_config = get_option("scn_config");
             <tr valign="top">
                 <th scope="row">Kódy do hlavičky</th>
                 <td>
-                    <textarea name="scn_header" value="<?php echo $scn_header; ?>" class="small-text"></textarea>
+                    <textarea name="scn_header" value="<?php echo $scn_header; ?>" class="widefat textarea"></textarea>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Kódy do patičky</th>
                 <td>
-                    <textarea name="scn_header" value="<?php echo $scn_header; ?>" class="small-text"></textarea>
+                    <textarea name="scn_header" value="<?php echo $scn_header; ?>" class="widefat textarea"></textarea>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Nastavení</th>
                 <td>
-                    <textarea name="scn_header" value="<?php echo $scn_config; ?>" class="small-text"></textarea>
+                    <textarea name="scn_header" value="<?php echo $scn_config; ?>" class="widefat textarea"></textarea>
                 </td>
             </tr>
 		</table>

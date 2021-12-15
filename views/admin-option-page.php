@@ -16,19 +16,19 @@ $scn_config = get_option("scn_config");
             <tr valign="top">
                 <th scope="row">Kódy do hlavičky</th>
                 <td>
-                    <textarea id="js-code-editor-scn-header" name="scn_header" value="<?php echo wp_unslash( $scn_header ); ?>" class="widefat textarea"></textarea>
+                    <textarea id="js-code-editor-scn-header" rows="5" name="scn_header" class="widefat textarea"><?php echo wp_unslash( $scn_header ); ?></textarea>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Kódy do patičky</th>
                 <td>
-                    <textarea id="js-code-editor-scn-footer" name="scn_footer" value="<?php echo wp_unslash(  $scn_footer ); ?>" class="widefat textarea"></textarea>
+                    <textarea id="js-code-editor-scn-footer" rows="5" name="scn_footer" class="widefat textarea"><?php echo wp_unslash(  $scn_footer ); ?></textarea>
                 </td>
             </tr>
             <tr valign="top">
                 <th scope="row">Nastavení</th>
                 <td>
-                    <textarea id="js-code-editor-scn-config" name="scn_config" value="<?php echo wp_unslash( $scn_config ); ?>" class="widefat textarea"></textarea>
+                    <textarea id="js-code-editor-scn-config" rows="5" name="scn_config" class="widefat textarea"><?php echo wp_unslash( $scn_config ); ?></textarea>
                 </td>
             </tr>
 		</table>

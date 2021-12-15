@@ -44,10 +44,10 @@ clearstatcache();
 // Add this
 add_action('wp_footer', function() use ( $config_path ) {
     $digits = 3;
-    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js', array(), '1.0.' . rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 ) );
+    $c = rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 );
+    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js?c=' . $c );
     wp_enqueue_script( 'cookienotice-config', $config_path );
 } );
-
 
 // Add JS to head
 add_action( "wp_head", function() {
@@ -112,7 +112,6 @@ add_action( 'updated_option', function( $option_name, $old_value, $value ) use (
 function scn_add_admin_plugin_page(){
     require_once __DIR__ . "/views/admin-option-page.php";
 }
-
 
 // Code hightlights
 add_action( 'admin_enqueue_scripts', 'scn_add_page_scripts_enqueue_script' );

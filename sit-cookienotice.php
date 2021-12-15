@@ -75,4 +75,3 @@ function scn_register_plugin_settings(){
 function scn_add_admin_plugin_page(){
     require_once __DIR__ . "/views/admin-option-page.php";
 }
-

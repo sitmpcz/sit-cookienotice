@@ -1,4 +1,5 @@
 // https://github.com/orestbida/cookieconsent
+
 var cc = initCookieConsent();
 
 cc.run({

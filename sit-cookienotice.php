@@ -43,7 +43,8 @@ clearstatcache();
 
 // Add this
 add_action('wp_footer', function() use ( $config_path ) {
-    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
+    $digits = 3;
+    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js', array(), '1.0.' . rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 ) );
     wp_enqueue_script( 'cookienotice-config', $config_path );
 } );
 

@@ -44,13 +44,14 @@ clearstatcache();
 
 // Add this
 add_action('wp_footer', function() use ( $config_path ) {
-    $digits = 3;
-    // Anti cache
-    $c = rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 );
     // Vendor
     wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
+    wp_enqueue_script( 'cookie-config', $config_path );
     // Config
-    wp_enqueue_script( 'cookienotice-config', $config_path . '?c=' . $c );
+    //$digits = 3;
+    // Anti cache
+    //$c = rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 );
+    //wp_enqueue_script( 'cookie-config', $config_path . '?c=' . $c );
 } );
 
 // Ulozene JS sledovaci kody vlozime tam, kam patri :)

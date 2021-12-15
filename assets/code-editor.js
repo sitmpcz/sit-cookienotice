@@ -13,7 +13,7 @@
                     mode: 'javascript',
                 }
             );
-            var editor = wp.codeEditor.initialize( $('#code_editor_page_js'), editorSettings );
+            var editor = wp.codeEditor.initialize( $('.code-editor-scn'), editorSettings );
         }
 
     });

@@ -1,6 +1,7 @@
 <?php
 
 $cookie_config = '
+// Dokumentace:
 // https://github.com/orestbida/cookieconsent
 
 var cc = initCookieConsent();
@@ -52,23 +53,9 @@ cc.run({
               value: "analytics",
               enabled: false,
               readonly: false
-            },
-            cookie_table: [
-              {
-                col1: "^_ga",
-                col2: "google.com",
-                col3: "2 years",
-                col4: "description ...",
-                is_regex: true
-              },
-              {
-                col1: "_gid",
-                col2: "google.com",
-                col3: "1 day",
-                col4: "description ...",
-              }
-            ]
+            }
           },
+          /*
           {
             title: "Marketingové soubory cookie",
             description: "Pomáhají sledovat, jak návštěvníci web používají, které stránky na webu navštěvují a na které odkazy klikají. Tyto anonymní informace využíváme v marketingovém nástroji Facebook Pixel. Všechny informace, které soubory cookie shromažďují, jsou souhrnné a anonymní.",
@@ -78,6 +65,7 @@ cc.run({
               readonly: false
             }
           },
+          */
           {
             title: "Více informací",
             description: \'Pokud máte nějaké dotazy nebo připomínky <a class="cc-link" href="mailto:web@plzen.eu">kontaktujte nás</a>.\',

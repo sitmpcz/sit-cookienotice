@@ -20,19 +20,28 @@ if ( $scn_config == "" ) {
 		?>
 		<table class="form-table">
             <tr valign="top">
-                <th scope="row">Kódy do hlavičky</th>
+                <td scope="row">
+                    <b>Kódy do hlavičky</b>
+                    <p>Atributy: type="text/plain" data-cookiecategory="analytics"</p>
+                </td>
                 <td>
                     <textarea id="js-code-editor-scn-head" rows="5" name="scn_head" class="widefat textarea"><?php echo wp_unslash( $scn_head ); ?></textarea>
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Kódy do patičky</th>
+                <td scope="row">
+                    <b>Kódy do patičky</b>
+                    <p>Atributy: type="text/plain" data-cookiecategory="analytics"</p>
+                </td>
                 <td>
                     <textarea id="js-code-editor-scn-footer" rows="5" name="scn_footer" class="widefat textarea"><?php echo wp_unslash(  $scn_footer ); ?></textarea>
                 </td>
             </tr>
             <tr valign="top">
-                <th scope="row">Nastavení <br>Pokud se smaže, doplní se základní nastavení!</th>
+                <td scope="row">
+                    <b>Nastavení</b>
+                    <p>Pokud se smaže, doplní se základní nastavení!</p>
+                </td>
                 <td>
                     <textarea id="js-code-editor-scn-config" rows="5" name="scn_config" class="widefat textarea"><?php echo wp_unslash( $scn_config ); ?></textarea>
                 </td>

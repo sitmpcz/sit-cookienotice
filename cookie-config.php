@@ -47,7 +47,7 @@ cc.run({
             }
           },
           {
-            title: "Analitické soubory cookie",
+            title: "Analytické soubory cookie",
             description: "Pomáhají nám sestavit statistiky návštěvnosti webu. Konkrétně pomáhají sledovat počet návštěvníků, které stránky jsou nejoblíbenější, jakým způsobem se návštěvníci na webu pohybují a také z jakého zdroje provoz pochází. Všechny informace, které soubory cookie shromažďují, jsou souhrnné a anonymní.",
             toggle: {
               value: "analytics",

@@ -13,8 +13,8 @@ cc.run({
   languages: {
     "cs": {
       consent_modal: {
-        title: "Používáme cookie!",
-        description: \'Tento web je spravován společností SPRÁVA INFORMAČNÍCH TECHNOLIGIÍ MĚSTA PLZNĚ, příspěvková organizace a používá soubory cookie k zajištění funkčnosti webových stránek, jejich optimalizaci, pro správu preferencí, analýzu rozsahu a anonymní statistiky. Získané údaje jsou anonymní a nesdílíme je s nikým dalším. Kdykoli máte možnost využít svého práva poskytnout nebo neposkytnout souhlas s oprávněným zájmem na základě konkrétního účelu. To provedete v <button type="button" data-cc="c-settings" class="cc-link">nastavení</button>\',
+        title: "Používáme soubory cookie.",
+        description: \'Na tomto webu používáme soubory cookie k zajištění správné funkčnosti, optimalizaci, pro správu preferencí, analýzu rozsahu a anonymní statistiky. Získané údaje jsou anonymní a nesdílíme je s nikým dalším. Kdykoli máte možnost využít svého práva poskytnout nebo neposkytnout souhlas s oprávněným zájmem na základě konkrétního účelu. Máte také právo svůj souhlas kdykoliv odvolat. Podrobnější nastavení souhlasu provedete v <button type="button" data-cc="c-settings" class="cc-link">nastavení</button>\',
         primary_btn: {
           text: "Přijmout vše",
           role: "accept_all"
@@ -34,7 +34,7 @@ cc.run({
         ],
         blocks: [
           {
-            title: "Používáme soubory cookie 📢",
+            title: "Používáme soubory cookie",
             description: "Soubory cookie jsou krátké textové soubory, které si navštívený web ukládá ve vašem prohlížeči. Umožňují webu zaznamenat informace o vaší návštěvě a ty následně použít ke správnému fungování webu, případně ke statistickým nebo marketingovým účelům. Prohlížeč můžete nastavit tak, aby blokoval soubory cookie nebo o nich posílal upozornění. Mějte však na paměti, že některé stránky bez těchto souborů nemusí fungovat správně."
           },
           {
@@ -68,7 +68,7 @@ cc.run({
           */
           {
             title: "Více informací",
-            description: \'Pokud máte nějaké dotazy nebo připomínky <a class="cc-link" href="mailto:web@plzen.eu">kontaktujte nás</a>.\',
+            description: \'Technickým správcem tohoto webu a zpracovatelem anonymních dat ze souborů cookie je společnost SPRÁVA INFORMAČNÍCH TECHNOLIGIÍ MĚSTA PLZNĚ, příspěvková organizace. Platnost souborů cookie je 14 dnů. Pokud máte nějaké dotazy nebo připomínky <a class="cc-link" href="mailto:web@plzen.eu">kontaktujte nás</a>.\',
           }
         ]
       }

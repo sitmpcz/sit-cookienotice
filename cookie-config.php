@@ -68,7 +68,7 @@ cc.run({
           */
           {
             title: "Více informací",
-            description: \'Technickým správcem tohoto webu a zpracovatelem anonymních dat ze souborů cookie je společnost SPRÁVA INFORMAČNÍCH TECHNOLIGIÍ MĚSTA PLZNĚ, příspěvková organizace. Pokud máte nějaké dotazy nebo připomínky <a class="cc-link" href="mailto:web@plzen.eu">kontaktujte nás</a>.\',
+            description: \'Technickým správcem tohoto webu a zpracovatelem anonymních dat ze souborů cookie je společnost SPRÁVA INFORMAČNÍCH TECHNOLOGIÍ MĚSTA PLZNĚ, příspěvková organizace. Pokud máte nějaké dotazy nebo připomínky <a class="cc-link" href="mailto:web@plzen.eu">kontaktujte nás</a>.\',
           }
         ]
       }

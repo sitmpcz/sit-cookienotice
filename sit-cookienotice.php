@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 1.2.6
+ * Version: 2.0.0
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -11,50 +11,41 @@ if ( !defined('SCN_PLUGIN_PATH') ) {
     define( 'SCN_PLUGIN_PATH', plugin_dir_url( __FILE__ ) );
 }
 
-require "cookie-config.php";
-require "put-js-config.php";
-
-// Vytvorime JS s konfiguraci
-scn_put_js_config( $cookie_config );
-
 // Assets
 
 // Default CSS
 add_action( 'wp_enqueue_scripts', 'scn_styles', 99 );
 function scn_styles() {
-    wp_enqueue_style( 'cookieconsent-css', SCN_PLUGIN_PATH . 'assets/cookieconsent.css' );
+    wp_enqueue_style( 'cookieconsent-css', 'https://cookie-notice.plzen.eu/cookieconsent.css' );
 }
 
 //Javascript
 
-// Prepare file path to check
-//$location = get_template_directory_uri();
-//$location = str_replace( "http://", "", $location );
-//$location = str_replace( "https://", "", $location );
-//$location = str_replace( $_SERVER['HTTP_HOST'], "", $location );
-//$location = $_SERVER['DOCUMENT_ROOT'] . $location;
-//$filename = $location . "/cookie-config.js";
+add_action('wp_footer', function() {
 
-// Check if custom config file exists
-// Mame vygenerovany JS config z ulozenych dat v admin?
-//if ( file_exists( $filename ) ) {
-    $config_path = get_template_directory_uri() . "/cookie-config.js";
-//}
-// Pokud ne, vlozime nejaky zaklad
-//else {
-//    $config_path = SCN_PLUGIN_PATH . 'cookie-config.js';
-//}
-//clearstatcache();
+    $scn_config_ga = get_option("scn_config_ga");
+    $scn_config_marketing = get_option("scn_config_marketing");
+    $scn_config_url = get_option("scn_config_url");
 
-// Add this
-add_action('wp_footer', function() use ( $config_path ) {
-    // Vendor
-    wp_enqueue_script( 'cookienotice-js', SCN_PLUGIN_PATH . 'assets/cookieconsent.js' );
-    // Config
-    $digits = 3;
-    // Anti cache
-    $rn = rand( pow( 10, $digits - 1 ), pow (10, $digits ) - 1 );
-    wp_enqueue_script( 'cookie-config', $config_path, [], "1.0." . $rn );
+    if ( $scn_config_ga ) {
+        $config_url = 'https://cookie-notice.plzen.eu/cookie-config.js';
+    }
+    else if ( $scn_config_marketing ) {
+        $config_url = 'https://cookie-notice.plzen.eu/cookie-market-config.js';
+    }
+    else if ( $scn_config_url != "" ) {
+        $config_url = esc_url( $scn_config_url );
+    }
+    else {
+        $config_url = '';
+    }
+
+    if ( $config_url != "" ) {
+        // Vendor
+        wp_enqueue_script( 'cookienotice-js', 'https://cookie-notice.plzen.eu/cookieconsent.js' );
+        // Config
+        wp_enqueue_script( 'cookie-config', $config_url );
+    }
 } );
 
 // Ulozene JS sledovaci kody vlozime tam, kam patri :)
@@ -97,7 +88,9 @@ function scn_register_plugin_settings(){
 
     register_setting( "scn_options", "scn_head" );
     register_setting( "scn_options", "scn_footer" );
-    register_setting( "scn_options", "scn_config" );
+    register_setting( "scn_options", "scn_config_ga" );
+    register_setting( "scn_options", "scn_config_marketing" );
+    register_setting( "scn_options", "scn_config_url" );
 
 }
 
@@ -118,11 +111,3 @@ function scn_add_page_scripts_enqueue_script( $hook ) {
 
     }
 }
-
-// Jakmile zmenime nastaveni v admin, vygenerujeme soubor cookie-config.js
-// After save options
-add_action( 'updated_option', function( $option_name, $old_value, $value ) use ( $cookie_config ) {
-
-    scn_put_js_config( $cookie_config );
-
-}, 10, 3 );

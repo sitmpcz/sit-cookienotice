@@ -23,17 +23,16 @@ function scn_styles() {
 
 add_action('wp_footer', function() {
 
-    $scn_config_ga = get_option("scn_config_ga");
-    $scn_config_marketing = get_option("scn_config_marketing");
+    $scn_cookie_version = get_option("scn_cookie_version");
     $scn_config_url = get_option("scn_config_url");
 
-    if ( $scn_config_ga ) {
+    if ( $scn_cookie_version === "ga" ) {
         $config_url = 'https://cookie-notice.plzen.eu/cookie-config.js';
     }
-    else if ( $scn_config_marketing ) {
+    else if ( $scn_cookie_version === "marketing" ) {
         $config_url = 'https://cookie-notice.plzen.eu/cookie-market-config.js';
     }
-    else if ( $scn_config_url != "" ) {
+    else if ( $scn_config_url === "custom" ) {
         $config_url = esc_url( $scn_config_url );
     }
     else {
@@ -88,8 +87,7 @@ function scn_register_plugin_settings(){
 
     register_setting( "scn_options", "scn_head" );
     register_setting( "scn_options", "scn_footer" );
-    register_setting( "scn_options", "scn_config_ga" );
-    register_setting( "scn_options", "scn_config_marketing" );
+    register_setting( "scn_options", "scn_cookie_version" );
     register_setting( "scn_options", "scn_config_url" );
 
 }

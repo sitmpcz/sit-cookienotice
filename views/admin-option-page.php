@@ -3,8 +3,7 @@
 $scn_head = get_option("scn_head");
 $scn_footer = get_option("scn_footer");
 
-$scn_config_ga = get_option("scn_config_ga");
-$scn_config_marketing = get_option("scn_config_marketing");
+$scn_cookie_version = get_option("scn_cookie_version");
 $scn_config_url = get_option("scn_config_url");
 
 if ( $scn_config_url != "" ) {
@@ -45,21 +44,33 @@ if ( $scn_config_url != "" ) {
                 </th>
                 <td>
                     <p>
-                        <input type="checkbox" name="scn_config_ga" id="scn_config_ga"<?php echo ( $scn_config_ga ) ? " checked" : ""; ?>>
+                        <input type="radio" name="scn_cookie_version" value="ga" id="scn_config_ga"<?php echo ( $scn_cookie_version === "ga" ) ? " checked" : ""; ?>>
                         <label for="scn_config_ga">
                             Google Analytics
                         </label>
                     </p>
-                    <p style="margin-bottom: 20px;">
-                        <input type="checkbox" name="scn_config_marketing" id="scn_config_marketing"<?php echo ( $scn_config_marketing ) ? " checked" : ""; ?>>
+                    <p>
+                        <input type="radio" name="scn_cookie_version" value="marketing" id="scn_config_marketing"<?php echo ( $scn_cookie_version === "marketing") ? " checked" : ""; ?>>
                         <label for="scn_config_marketing">
                             Marketing
                         </label>
                     </p>
-                    <p>
-                        <label for="scn_config_url">Vlastní cesta k souboru s nastavením:</label><br>
-                        <input type="text" name="scn_config_url" id="scn_config_url" value="<?php echo $scn_config_url; ?>" class="regular-text">
+                    <p style="margin-bottom: 20px;">
+                        <input type="radio" name="scn_cookie_version" value="custom" id="scn_config_custom"<?php echo ( $scn_cookie_version === "custom" ) ? " checked" : ""; ?>>
+                        <label for="scn_config_custom">
+                            Vlastní
+                        </label>
                     </p>
+                    <?php
+                    if ( $scn_cookie_version === "custom" ) :
+                        ?>
+                        <p>
+                            <label for="scn_config_url">Vlastní cesta k souboru s nastavením:</label><br>
+                            <input type="text" name="scn_config_url" id="scn_config_url" value="<?php echo $scn_config_url; ?>" class="regular-text">
+                        </p>
+                    <?php
+                    endif;
+                    ?>
                 </td>
             </tr>
         </table>

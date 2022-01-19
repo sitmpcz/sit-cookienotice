@@ -23,6 +23,10 @@ function scn_styles() {
 
 add_action('wp_footer', function() {
 
+    // Vendor
+    wp_enqueue_script( 'cookienotice-js', 'https://cookie-notice.plzen.eu/cookieconsent.js' );
+
+    // Set config
     $scn_cookie_version = get_option("scn_cookie_version");
     $scn_config_url = get_option("scn_config_url");
 
@@ -40,10 +44,8 @@ add_action('wp_footer', function() {
     }
 
     if ( $config_url != "" ) {
-        // Vendor
-        wp_enqueue_script( 'cookienotice-js', 'https://cookie-notice.plzen.eu/cookieconsent.js' );
         // Config
-        wp_enqueue_script( 'cookie-config', $config_url );
+        wp_enqueue_script( 'cookienotice-config-js', $config_url );
     }
 } );
 

@@ -11,6 +11,10 @@ if ( $scn_config_url != "" ) {
     $scn_config_ga = false;
 }
 
+// Check if Polylang is there
+if ( function_exists( 'pll_the_languages' ) ) {
+    $langs = pll_the_languages( array( "raw" => 1 ) );
+}
 ?>
 <div class="wrap">
     <h1>Nastavení SIT Cookie notice</h1>
@@ -73,6 +77,36 @@ if ( $scn_config_url != "" ) {
                     ?>
                 </td>
             </tr>
+            <?php
+            // Polylang languages
+            if ( isset( $langs ) && $langs ) :
+                ?>
+                <tr>
+                    <th>
+                        <label style="margin-bottom: 10px;">Překlady</label>
+                    </th>
+                    <td>
+                        <?php
+                        foreach ( $langs as $key => $value ) :
+
+                            $lang_slug = mb_strtolower( $value["slug"] );
+                            $val = get_option( "scn_config_lang_$lang_slug" );
+
+                            if ( $lang_slug !== "cs" && $lang_slug !== "cz" ):
+                                ?>
+                                <p>
+                                    <label for="scn_config_lang_<?php echo $lang_slug; ?>">Nastavení pro jazyk <?php echo $value["name"]; ?>:</label><br>
+                                    <input type="text" name="scn_config_lang_<?php echo $lang_slug; ?>" id="scn_config_lang_<?php echo $lang_slug; ?>" value="<?php echo $val; ?>" class="regular-text">
+                                </p>
+                            <?php
+                            endif;
+                        endforeach;
+                        ?>
+                    </td>
+                </tr>
+            <?php
+            endif;
+            ?>
         </table>
         <?php
         submit_button();

@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 2.0.0
+ * Version: 2.1.0
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -44,8 +44,17 @@ add_action('wp_footer', function() {
     }
 
     if ( $config_url != "" ) {
-        // Config
-        wp_enqueue_script( 'cookienotice-config-js', $config_url );
+        // Translates
+        if ( function_exists( 'pll_current_language' ) ) {
+            $current_lang = mb_strtolower(  pll_current_language( "slug" ) );
+            if ( $current_lang !== "cs" && $current_lang !== "cz" ) {
+                $config_url = get_option( "scn_config_lang_$current_lang" );
+            }
+        }
+
+        if ( $config_url != "" ) {
+            wp_enqueue_script( 'cookienotice-config-js', $config_url );
+        }
     }
 } );
 
@@ -91,6 +100,19 @@ function scn_register_plugin_settings(){
     register_setting( "scn_options", "scn_footer" );
     register_setting( "scn_options", "scn_cookie_version" );
     register_setting( "scn_options", "scn_config_url" );
+
+    // Check if Polylang is there
+    if ( function_exists( 'pll_the_languages' ) ) {
+        $langs = pll_the_languages( array( "raw" => 1 ) );
+        if ( $langs ) {
+            foreach ( $langs as $key => $value ) {
+                $lang_slug = mb_strtolower( $value["slug"] );
+                if ( $lang_slug !== "cs" && $lang_slug !== "cz" ) {
+                    register_setting( "scn_options", "scn_config_lang_" . $lang_slug );
+                }
+            }
+        }
+    }
 
 }
 

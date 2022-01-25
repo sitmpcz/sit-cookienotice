@@ -94,12 +94,16 @@ if ( function_exists( 'pll_the_languages' ) ) {
 
                             if ( $lang_slug !== "cs" && $lang_slug !== "cz" ):
                                 ?>
-                                <p>
+                                <p style="margin-bottom: 10px;">
                                     <label for="scn_config_lang_<?php echo $lang_slug; ?>">Nastavení pro jazyk <?php echo $value["name"]; ?>:</label><br>
                                     <input type="text" name="scn_config_lang_<?php echo $lang_slug; ?>" id="scn_config_lang_<?php echo $lang_slug; ?>" value="<?php echo $val; ?>" class="regular-text">
                                 </p>
                             <?php
-                            endif;
+                            endif; ?>
+                        <p style="margin-top: 32px;">Defaults: <br>
+                            https://cookie-notice.plzen.eu/<b>en-</b>cookie-config.js<br>
+                            https://cookie-notice.plzen.eu/<b>en-</b>cookie-market-config.js</p>
+                        <?php
                         endforeach;
                         ?>
                     </td>

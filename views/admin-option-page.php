@@ -100,9 +100,11 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                 </p>
                             <?php
                             endif; ?>
-                        <p style="margin-top: 32px;">Defaults: <br>
+                            <p style="margin-top: 32px;">Defaults:
+                            <br>
                             https://cookie-notice.plzen.eu/<b>en-</b>cookie-config.js<br>
-                            https://cookie-notice.plzen.eu/<b>en-</b>cookie-market-config.js</p>
+                            https://cookie-notice.plzen.eu/<b>en-</b>cookie-market-config.js
+                            </p>
                         <?php
                         endforeach;
                         ?>

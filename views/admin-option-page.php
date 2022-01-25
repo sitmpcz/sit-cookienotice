@@ -99,15 +99,14 @@ if ( function_exists( 'pll_the_languages' ) ) {
                                     <input type="text" name="scn_config_lang_<?php echo $lang_slug; ?>" id="scn_config_lang_<?php echo $lang_slug; ?>" value="<?php echo $val; ?>" class="regular-text">
                                 </p>
                             <?php
-                            endif; ?>
-                            <p style="margin-top: 32px;">Defaults:
+                            endif;
+                        endforeach;
+                        ?>
+                        <p style="margin-top: 32px;">Defaults:
                             <br>
                             https://cookie-notice.plzen.eu/<b>en-</b>cookie-config.js<br>
                             https://cookie-notice.plzen.eu/<b>en-</b>cookie-market-config.js
-                            </p>
-                        <?php
-                        endforeach;
-                        ?>
+                        </p>
                     </td>
                 </tr>
             <?php

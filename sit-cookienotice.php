@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 2.2.3
+ * Version: 2.2.4
  * Author: SIT:Jaroslav Dvořák
  **/
 

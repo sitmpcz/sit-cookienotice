@@ -11,9 +11,12 @@ if ( $scn_config_url != "" ) {
     $scn_config_ga = false;
 }
 
+$langs = null;
 // Check if Polylang is there
-if ( function_exists( 'pll_the_languages' ) ) {
-    $langs = pll_the_languages( array( "raw" => 1 ) );
+if ( function_exists( 'pll_default_language' ) ) {
+    if ( pll_default_language() !== false ) {
+        $langs = pll_the_languages( array("raw" => 1 ) );
+    }
 }
 ?>
 <div class="wrap">
@@ -79,7 +82,7 @@ if ( function_exists( 'pll_the_languages' ) ) {
             </tr>
             <?php
             // Polylang languages
-            if ( isset( $langs ) && $langs ) :
+            if ( $langs ) :
                 ?>
                 <tr>
                     <th>

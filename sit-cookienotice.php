@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 2.2.5
+ * Version: 2.2.6
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -102,9 +102,9 @@ function scn_register_plugin_settings(){
     register_setting( "scn_options", "scn_config_url" );
 
     // Check if Polylang is there
-    if ( function_exists( 'pll_the_languages' ) ) {
+    if ( function_exists( 'pll_default_language' ) ) {
         // Language must be set
-        if ( pll_current_language() !== false ) {
+        if ( pll_default_language() !== false ) {
             $langs = pll_the_languages( array( "raw" => 1 ) );
             if ( $langs ) {
                 foreach ( $langs as $key => $value ) {

@@ -23,6 +23,13 @@ add_action('wp_footer', function() {
     wp_enqueue_script( 'cookienotice', 'https://cookie-notice.plzen.eu/default/cookieconsent.js' );
 } );
 
+add_filter('script_loader_tag', function ($tag, $handle, $src) {
+    if ('cookienotice' === $handle) {
+        $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
+    }
+    return $tag;
+}, 10, 3 );
+
 // Ulozene JS sledovaci kody vlozime tam, kam patri :)
 
 // Add JS to head

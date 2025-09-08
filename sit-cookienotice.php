@@ -2,7 +2,7 @@
 /**
  * Plugin Name: SIT cookienotice
  * Description: Cookie lišta pro Wordpress
- * Version: 3.0.0
+ * Version: 3.0.1
  * Author: SIT:Jaroslav Dvořák
  **/
 
@@ -22,7 +22,7 @@ add_action( 'wp_enqueue_scripts', function () {
 add_action('wp_footer', function() {
     wp_enqueue_script( 'cookienotice', 'https://cookie-notice.plzen.eu/default/cookieconsent.js' );
 } );
-
+// Musi byt jako modul
 add_filter('script_loader_tag', function ($tag, $handle, $src) {
     if ('cookienotice' === $handle) {
         $tag = '<script type="module" src="' . esc_url($src) . '"></script>';
